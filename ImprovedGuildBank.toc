@@ -1,0 +1,17 @@
+## Interface: 90200
+## Interface-BCC: 20504
+## Author: 绿毛龟12138
+## Version: @project-version@
+## Title: ImprovedGuildBank
+## Title-zhCN: 公会银行增强
+## Notes: Add some features to blizzard guild bank
+## Notes-zhCN: 为公会银行添加一些额外功能
+## LoadOnDemand: 1
+## Dependices: Scorpio
+## LoadWith: Blizzard_GuildBankUI
+## SavedVariables: ImprovedGuildBankSaved
+
+Locales\Locales.xml
+Core.lua
+ImprovedGuildBank.lua
+Sort.lua
