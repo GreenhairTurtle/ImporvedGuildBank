@@ -21,7 +21,7 @@ end
 
 __AsyncSingle__()
 function Sort()
-    if CanSortTab() then
+    if not CanSortTab() then
         return ShowError(L["guildbank_cannot_withdraw"])
     end
     
@@ -30,5 +30,5 @@ end
 function MergeItems()
     if not Option.Sort.MergeItems then return end
 
-
+    
 end

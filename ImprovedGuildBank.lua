@@ -17,10 +17,28 @@ function OnLoad(self)
     Option:SetDefault(DefaultOption)
 end
 
+__Arguments__{ NaturalNumber + NEString }:Throwable()
 __Async__(true)
-__Arguments__{ NaturalNumber + NEString }
 function GetItemInfo(item)
-    -- local  = oGetItemInfo(item)
+    local itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+    itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = oGetItemInfo(item)
+
+    if itemName then
+        return itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+        itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent
+    end
+    
+    local exists = C_Item.DoesItemExistByID(item)
+    if not exists then
+        throw("The item:" .. item .. " is not exists")
+    end
+
+    -- Wait(3, "ITEM_DATA_LOAD_RESULT")
+    
+    -- itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+    --     itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = oGetItemInfo(item)
+
+    
 end
 
 __Arguments__{ NaturalNumber/nil }

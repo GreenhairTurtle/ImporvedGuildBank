@@ -7,7 +7,7 @@
 ## Notes: Add some features to blizzard guild bank
 ## Notes-zhCN: 为公会银行添加一些额外功能
 ## LoadOnDemand: 1
-## Dependices: Scorpio
+## Dependecies: Scorpio
 ## LoadWith: Blizzard_GuildBankUI
 ## SavedVariables: ImprovedGuildBankSaved
 
