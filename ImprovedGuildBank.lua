@@ -1,8 +1,9 @@
 Scorpio "ImprovedGuildBank" ""
 
-L = _Locale
-local oGetItemInfo = _G.GetItemInfo
+import "ImprovedGuildBank"
 
+L = _Locale
+MAX_GUILDBANK_SLOTS_PER_TAB = 98
 DefaultOption                   = {
     Sort                        = {
         -- Whether merge items
@@ -17,28 +18,19 @@ function OnLoad(self)
     Option:SetDefault(DefaultOption)
 end
 
-__Arguments__{ NaturalNumber + NEString }:Throwable()
-__Async__(true)
-function GetItemInfo(item)
-    local itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-    itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = oGetItemInfo(item)
-
-    if itemName then
-        return itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-        itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent
-    end
+__Arguments__{ NaturalNumber/nil }
+function GetGuildBankTabSlotInfos(tab)
+    tab = tab or GetCurrentGuildBankTab()
     
-    local exists = C_Item.DoesItemExistByID(item)
-    if not exists then
-        throw("The item:" .. item .. " is not exists")
+    local slotInfos = {}
+    for i = 1, MAX_GUILDBANK_SLOTS_PER_TAB do
+        local slotInfo = GuildBankSlotInfo(tab, i)
+        if slotInfo:IsValid() then
+            tinsert(slotInfos, slotInfo)
+        end
     end
 
-    -- Wait(3, "ITEM_DATA_LOAD_RESULT")
-    
-    -- itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-    --     itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = oGetItemInfo(item)
-
-    
+    return slotInfos
 end
 
 __Arguments__{ NaturalNumber/nil }
